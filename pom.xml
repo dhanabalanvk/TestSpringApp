@@ -14,9 +14,18 @@
 	</parent>
 	<properties>
 		<java-version>1.6</java-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
 	<dependencies>
-
+		<dependency>
+		  <groupId>org.jboss.spec</groupId>
+		  <artifactId>jboss-javaee-6.0</artifactId>
+		  <version>1.0.0.Final</version>
+		  <type>pom</type>
+		  <scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -33,114 +42,26 @@
 			<version>3.0.1</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<!-- For testing against latest Spring snapshots -->
-		<repository>
-			<id>org.springframework.maven.snapshot</id>
-			<name>Spring Maven Snapshot Repository</name>
-			<url>http://maven.springframework.org/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<!-- For developing against latest Spring milestones -->
-		<repository>
-			<id>org.springframework.maven.milestone</id>
-			<name>Spring Maven Milestone Repository</name>
-			<url>http://maven.springframework.org/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<!-- For Roo -->
-		<repository>
-			<id>spring-roo-repository</id>
-			<name>Spring Roo Repository</name>
-			<url>http://spring-roo-repository.springsource.org/release</url>
-		</repository>
-		<!-- For Hibernate -->
-		<repository>
-			<id>org.jboss.repository.releases</id>
-			<name>JBoss Maven Release Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-		<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warName>travel</warName>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>install</id>
-						<phase>install</phase>
-						<goals>
-							<goal>sources</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<junitArtifactName>junit:junit</junitArtifactName>
-					<excludes>
-						<exclude>**/*_Roo_*</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<version>1.0-beta-1</version>
-			</plugin>
-		</plugins>
-	</build>
 	<profiles>
 		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
-				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
-				will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps' 
-				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<finalName>test</finalName>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
-						<configuration>
-							<outputDirectory>webapps</outputDirectory>
-							<warName>ROOT</warName>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
+		 <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+		 <!-- Use this profile for any OpenShift specific customization your app will need. -->
+		 <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+		 <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+		 <id>openshift</id>
+		 <build>
+			<finalName>TestApp</finalName>
+			<plugins>
+			  <plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+				  <outputDirectory>deployments</outputDirectory>
+				  <warName>ROOT</warName>
+				</configuration>
+			  </plugin>
+			</plugins>
+		  </build>
 		</profile>
-	</profiles>
+	  </profiles>
 </project>
