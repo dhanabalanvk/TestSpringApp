@@ -16,5 +16,6 @@ public class HomeController {
 	@RequestMapping("/testme.do")
 	public @ResponseBody String test(){
 		return "sivam";
+		dummy test
 	}
 }
