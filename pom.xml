@@ -40,7 +40,7 @@
 		<profile>
 			<id>openshift</id>
 			<build>
-				<finalName>SpringApp</finalName>
+				<finalName>TestApp</finalName>
 				<plugins>
 					<plugin>
 						<artifactId>maven-war-plugin</artifactId>
