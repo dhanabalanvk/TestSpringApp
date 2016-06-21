@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 	@RequestMapping("/testme.do")
 	public @ResponseBody String test(){
-		return "sivam";
+		return "sivam - test";
 	}
 }
