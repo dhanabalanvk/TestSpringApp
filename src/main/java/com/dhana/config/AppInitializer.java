@@ -23,7 +23,7 @@ public class AppInitializer extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
 	}
-	
+/*	
 	@Bean
 	 public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -33,4 +33,5 @@ public class AppInitializer extends SpringBootServletInitializer {
         dataSource.setPassword("ihb-uiahj564");
         return dataSource;
     }
+    */
 }
