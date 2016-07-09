@@ -36,11 +36,11 @@ public class AppInitializer extends SpringBootServletInitializer {
         dataSource.setPassword("ihb-uiahj564");
         return dataSource;
     }
-    */
+    
     @Bean
     public HibernateJpaSessionFactoryBean sessionFactory(EntityManagerFactory emf) {
          HibernateJpaSessionFactoryBean factory = new HibernateJpaSessionFactoryBean();
          factory.setEntityManagerFactory(emf);
          return factory;
-    }
+    }*/
 }
